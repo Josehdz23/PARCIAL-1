@@ -174,11 +174,12 @@ def empleadosEjemplares():
 
 def mejorEmpleado():
     mayor = 0
+    mejor = None
     if empleados:
         for clave, datos in empleados.items():
-            if datos['evaluacion']['promedio'] > mayor:
+            if mejor is None or datos['evaluacion']['promedio'] > mayor:
                 mayor = datos['evaluacion']['promedio']
-                mejor = datos[clave], datos['nombre'], datos['evaluacion']['promedio']
+                mejor = (clave, datos['nombre'], datos['evaluacion']['promedio'])
         print(f"El empleado con mejor evaluación es: {mejor}")
     else:
         print("No hay empleados registrados!!!")
