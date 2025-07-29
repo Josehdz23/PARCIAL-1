@@ -38,6 +38,88 @@ def registroEmpleados():
                 print("El dato de año no es válido, reintente")
         except Exception as ex:
             print(f"Ha ocurrido un error: {ex}")
+    while True:
+        try:
+            puntualidad = int(input("\nIngrese en puntos la puntualidad del empleado (0 - 10): "))
+            if puntualidad >= 0 and puntualidad <= 10:
+                break
+            else:
+                print("Dato incorrecto, reintente")
+        except Exception as ex:
+            print(f"Ha ocurrido un error: {ex}")
+    while True:
+        try:
+            equipo = int(input("\nIngrese en puntos el trabajo en equipo del empleado (0 - 10): "))
+            if equipo >= 0 and equipo <= 10:
+                break
+            else:
+                print("Dato incorrecto, reintente")
+        except Exception as ex:
+            print(f"Ha ocurrido un error: {ex}")
+    while True:
+        try:
+            productividad = int(input("\nIngrese en puntos la productividad del empleado (0 - 10): "))
+            if productividad >= 0 and productividad <= 10:
+                break
+            else:
+                print("Dato incorrecto, reintente")
+        except Exception as ex:
+            print(f"Ha ocurrido un error: {ex}")
+    while True:
+        observaciones = input("Ingrese alguna observación del empleado: ")
+        if observaciones or observaciones.isspace():
+            break
+        else:
+            print("Dato incorrecto, reintente")
+    sum = puntualidad + productividad + equipo
+    promedio = sum/3
+    if promedio >= 7:
+        estado = "Satisfactorio"
+    else:
+        estado = "Debe Mejorar!"
+    while True:
+        try:
+            telefono = int(input("\nIngrese el telefono del empleado: "))
+            if telefono > 0:
+                telefonoaux = str(telefono)
+                if len(telefonoaux) == 8:
+                    break
+                else:
+                    print("Número de telefono incompleto o inválido, reintente")
+            else:
+                print("Número de telefono incompleto o inválido, reintente")
+        except Exception as ex:
+            print(f"Ha ocurrido un error: {ex}")
+    while True:
+        correo = input("\nIngrese correo del empleado: ")
+        if correo or correo.isspace():
+            if "@gmail.com" in correo:
+                break
+            elif "@hotmail.com" in correo:
+                break
+            else:
+                print("Correo inválido, reintente")
+        else:
+            print("Correo inválido, reintente")
+    empleados[codigo] = {
+        "nombre": nombre,
+        "departamento": departamento,
+        "antigüedad": años,
+        "evaluacion": {
+            "puntualidad": puntualidad,
+            "productividad": productividad,
+            "equipo": equipo,
+            "observaciones": observaciones,
+            "estado": estado,
+            "promedio": promedio,
+        },
+        "contacto": {
+            "telefono": telefono,
+            "correo": correo,
+        }
+    }
+    print("Se ha agregado un empleado en la empresa!")
+
 
 def main():
     while True:
