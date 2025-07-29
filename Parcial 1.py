@@ -1,7 +1,7 @@
 empleados = {}
 
 def menu():
-    print("\n= = = = MENÚ = = = =\n1. Registrar empleados. \n2. Mostrar empleados. \n3. Buscar empleados. \n4. Mostrar empleados con mejores evaluaciones. \n5. Empleado con mejor promedio\n6. Salir")
+    print("\n= = = = MENÚ = = = =\n1. Registrar empleados. \n2. Mostrar empleados. \n3. Buscar empleados. \n4. Mostrar cuantos empleados tienen buena calificacion. \n5. Empleado con mejor promedio\n6. Salir")
 
 def registroEmpleados():
     while True:
@@ -161,6 +161,16 @@ def buscarEmpleado():
                 print(f"Ha ocurrido un error: {ex}")
     else:
         print("No hay empleados registrados!!!")
+
+def empleadosEjemplares():
+    cont = 0
+    if empleados:
+        for clave, datos in empleados.items():
+            if datos['evaluacion']['productividad'] > 7:
+                cont = cont + 1
+        print(f"Hay {cont} empleados con evaluación satisfactoria!")
+    else:
+        print("No hay empleados registrados!!!")
 def main():
     while True:
         try:
@@ -174,7 +184,7 @@ def main():
                 case 3:
                     buscarEmpleado()
                 case 4:
-                    print()
+                    empleadosEjemplares()
                 case 5:
                     print()
                 case 6:
