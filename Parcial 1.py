@@ -171,6 +171,17 @@ def empleadosEjemplares():
         print(f"Hay {cont} empleados con evaluación satisfactoria!")
     else:
         print("No hay empleados registrados!!!")
+
+def mejorEmpleado():
+    mayor = 0
+    if empleados:
+        for clave, datos in empleados.items():
+            if datos['evaluacion']['promedio'] > mayor:
+                mayor = datos['evaluacion']['promedio']
+                mejor = datos[clave], datos['nombre'], datos['evaluacion']['promedio']
+        print(f"El empleado con mejor evaluación es: {mejor}")
+    else:
+        print("No hay empleados registrados!!!")
 def main():
     while True:
         try:
@@ -186,7 +197,7 @@ def main():
                 case 4:
                     empleadosEjemplares()
                 case 5:
-                    print()
+                    mejorEmpleado()
                 case 6:
                     print("SALIENDO . . .")
                     break
