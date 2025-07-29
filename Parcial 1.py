@@ -71,7 +71,7 @@ def registroEmpleados():
                         except Exception as ex:
                             print(f"Ha ocurrido un error: {ex}")
                     while True:
-                        observaciones = input("Ingrese alguna observación del empleado: ")
+                        observaciones = input("\nIngrese alguna observación del empleado: ")
                         if observaciones or observaciones.isspace():
                             break
                         else:
@@ -86,11 +86,14 @@ def registroEmpleados():
                         try:
                             telefono = int(input("\nIngrese el telefono del empleado: "))
                             if telefono > 0:
-                                telefonoaux = str(telefono)
-                                if len(telefonoaux) == 8:
-                                    break
+                                if telefono in empleados:
+                                    print("El telefono del empleado ya existe, reintente")
                                 else:
-                                    print("Número de telefono incompleto o inválido, reintente")
+                                    telefonoaux = str(telefono)
+                                    if len(telefonoaux) == 8:
+                                        break
+                                    else:
+                                        print("Número de telefono incompleto o inválido, reintente")
                             else:
                                 print("Número de telefono incompleto o inválido, reintente")
                         except Exception as ex:
@@ -136,6 +139,28 @@ def mostrarEmpleados():
             print(f"\nCodigo: {clave} Nombre: {datos['nombre']} Departamento: {datos['departamento']} Antigüedad: {datos['antigüedad']}\nEvaluación:\nPuntualidad: {datos['evaluacion']['puntualidad']} Equipo: {datos['evaluacion']['equipo']} Productividad: {datos['evaluacion']['productividad']}\nObservaciones: {datos['evaluacion']['observaciones']}\nEstado: {datos['evaluacion']['estado']} Promedio: {datos['evaluacion']['promedio']}\nContacto:\nTelefono: {datos['contacto']['telefono']} Correo: {datos['contacto']['correo']}")
     else:
         print("No hay empleados registrados!!!")
+
+def buscarEmpleado():
+    b = 0
+    if empleados:
+        while b == 0:
+            try:
+                cod = int(input("\nIngrese el codigo del empleado que buscará: "))
+                if cod > 0:
+                    for clave, datos in empleados.items():
+                        if cod == clave:
+                            print(f"\nCodigo: {clave} Nombre: {datos['nombre']} Departamento: {datos['departamento']} Antigüedad: {datos['antigüedad']}\nEvaluación:\nPuntualidad: {datos['evaluacion']['puntualidad']} Equipo: {datos['evaluacion']['equipo']} Productividad: {datos['evaluacion']['productividad']}\nObservaciones: {datos['evaluacion']['observaciones']}\nEstado: {datos['evaluacion']['estado']} Promedio: {datos['evaluacion']['promedio']}\nContacto:\nTelefono: {datos['contacto']['telefono']} Correo: {datos['contacto']['correo']}")
+                            b = 1
+                            break
+                    if b == 0:
+                        print("No existe el empleado!!!")
+                        break
+                else:
+                    print("El codigo del empleado no es válido, reintente")
+            except Exception as ex:
+                print(f"Ha ocurrido un error: {ex}")
+    else:
+        print("No hay empleados registrados!!!")
 def main():
     while True:
         try:
@@ -147,7 +172,7 @@ def main():
                 case 2:
                     mostrarEmpleados()
                 case 3:
-                    print()
+                    buscarEmpleado()
                 case 4:
                     print()
                 case 5:
